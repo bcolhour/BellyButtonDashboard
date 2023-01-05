@@ -61,43 +61,79 @@ function buildCharts(sample) {
     console.log(data);
 
     // Deliverable 1: 3. Create a variable that holds the samples array. 
-
+      var samples = data.samples;
     // Deliverable 1: 4. Create a variable that filters the samples for the object with the desired sample number.
-
+      var filterArray = samples.filter(sampleobject =>
+        sampleobject.id == sample);
     // Deliverable 3: 1. Create a variable that filters the metadata array for the object with the desired sample number.
 
     // Deliverable 1: 5. Create a variable that holds the first sample in the array.
-
+      var result=filterArray[0]
     // Deliverable 3: 2. Create a variable that holds the first sample in the metadata array.
 
     // Deliverable 1: 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-
+        var ids =result.otu_ids;
+        var labels = result.otu_labels;
+        var values = result.sample_values;
+        console.log(ids);
     // Deliverable 3: 3. Create a variable that holds the washing frequency.
 
 
     // Deliverable 1: 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order 
     // so the otu_ids with the most bacteria are last. 
-    var yticks = 
+    var topId = samples.map(ids => ids.otu_ids);
+    // console.log(topId);
+    var sortTop10 = topId.sort((a, b) => b - a);
+  //  console.log(sortTop10);
+   var Top10Id = sortTop10.slice(0, 10).reverse();
+console.log(Top10Id);
+
+
+    var yticks = Top10Id
 
     // Deliverable 1: 8. Create the trace for the bar chart. 
-    var barData = [
-
+    var trace = [
+      {
+        y:ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
+        x:values.slice(0,10).reverse(),
+        text:labels.slice(0,10).reverse(),
+        type:"bar",
+        orientation:"h"
+  
+      }
     ];
 
     // Deliverable 1: 9. Create the layout for the bar chart. 
     var barLayout = {
-
+      title: "Top 10 Bacteria Cultures Found",
+      margin: { t: 30, l: 150 }
     };
 
     // Deliverable 1: 10. Use Plotly to plot the data with the layout. 
-
+    Plotly.newPlot("bar", trace, barLayout);
+  
+  
     // Deliverable 2: 1. Create the trace for the bubble chart.
-
+      var traceBubble = [ 
+      {
+        x: ids,
+        y: values,
+        text: labels,
+        mode: "markers",
+        marker: {
+          color: ids,
+          size: values,
+          }
+      }
+    ];
     // Deliverable 2: 2. Create the layout for the bubble chart.
-
+    var LayoutBubble = {
+      margin: { t: 0 },
+      xaxis: { title: "OTU ID" }
+      };
     // Deliverable 2: 3. Use Plotly to plot the data with the layout.
-    
+    Plotly.newPlot("bubble", traceBubble, LayoutBubble);
     // Deliverable 3: 4. Create the trace for the gauge chart.
     
     // Deliverable 3: 5. Create the layout for the gauge chart.
