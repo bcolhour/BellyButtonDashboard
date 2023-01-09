@@ -1,0 +1,40 @@
+.box {
+    color: #000;
+    background: rgba(0, 255, 55, 0.25);
+    font-style: oblique;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.box1 {
+    color: #000;
+    font-style: oblique;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.topnav {
+    background-color: rgb(33, 178, 214);
+    overflow:visible;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: justify;
+    color: #2b0ae9;
+    background-color: #10a1e4;
+    text-align: center;
+    padding: 2px 102px;
+    text-decoration: line;
+    font-size: 24px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: rgb(65, 243, 74);
+    color: rgb(24, 22, 22);
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
